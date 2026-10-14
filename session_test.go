@@ -677,3 +677,40 @@ func TestLateIdleRecognitionCannotPrependNewSpeech(t *testing.T) {
 		t.Fatalf("idle contamination: %q", got)
 	}
 }
+
+func TestQuestionAnswerRemainsSubstantiveAfterFollowingPhrase(t *testing.T) {
+	h := setup(t)
+	h.startAnswer()
+	h.a.replies <- zamu.ReplyEvent{Chunk: zamu.SpeechChunk{Sequence: 2, Text: "Would you like another?"}, AwaitingAnswer: true}
+	h.event("queued")
+	h.a.replies <- zamu.ReplyEvent{Chunk: zamu.SpeechChunk{Sequence: 3, Text: "Take your time."}}
+	h.event("queued")
+	h.utterance("yes", 16000, 20000)
+	h.event("interrupted")
+	h.c.advance(time.Second)
+	if got := h.turn().Text; got != "yes" {
+		t.Fatalf("lost answer %q", got)
+	}
+}
+func TestUnansweredQuestionStillExpiresIdleAdmission(t *testing.T) {
+	h := setup(t)
+	h.startAnswer()
+	h.a.replies <- zamu.ReplyEvent{Chunk: zamu.SpeechChunk{Sequence: 2, Text: "Anything else?"}, AwaitingAnswer: true}
+	h.event("queued")
+	h.a.ends <- struct{}{}
+	close(h.p.drained)
+	h.event("completed")
+	h.c.advance(5 * time.Minute)
+	h.event("idle_timeout")
+}
+func TestIdleTimerDoesNotRearmMutedCapture(t *testing.T) {
+	h := setup(t)
+	h.input(zamu.InputEvent{Kind: zamu.Muted})
+	h.event("muted")
+	h.c.advance(6 * time.Minute)
+	h.barrier()
+	h.stream = "unmuted"
+	h.seq = 0
+	h.input(zamu.InputEvent{Kind: zamu.CaptureReset, Binding: "conversation"})
+	h.event("listening")
+}

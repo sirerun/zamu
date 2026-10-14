@@ -1,0 +1,16 @@
+{
+  "revision": "fef56673e2ac3c8a59a647a5069212081a9ae279",
+  "license": "Apache-2.0",
+  "files": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "conversation/README.md": "9b73ce199e2b92965c029fc14bd5eff9d3d5f271edd3f1eac272b70f2d5000e5",
+    "conversation/client.go": "1cecb9e23c709cdd1f716a973a2db30c36ffee9436debb017e449526b8228dfe",
+    "conversation/recognizer.go": "0cb01caef330367027e03f85ea1333ffedaeda970ef6d90f3c62dba961c2c3bd",
+    "conversation/server.go": "6d7379defba62f1db2b818bdcd6d445b085d85682a636d30aae2c509b62cf1c9",
+    "gen/mistt/v1/mistt.pb.go": "1a6a0f7bc7a0c155d64ccfd33ff1ef8a13d5d7134896c838dc8cc5300ca3d4ef",
+    "gen/mistt/v1/mistt_grpc.pb.go": "52be9ca50e7654ae13e7988b7c3d7550b363da467687161a2a1c75f21afe8e4b",
+    "go.mod": "09ffda57976e110ed030bccbfda8504f5a1214673f29340cb4282d0e3a3cd49d",
+    "go.sum": "9625f193f8d823909aeedfccf38f5385925ff0f76b15bf3dd31716a64ab2affa",
+    "internal/audio/frame.go": "58c36de0a61c3f86af3e5f758cde8c6ec2b599cfd0a191db3657ef336bf26ac5"
+  }
+}

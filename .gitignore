@@ -1,0 +1,6 @@
+go.work
+go.work.sum
+.claude/
+.codex/
+coverage.out
+*.test

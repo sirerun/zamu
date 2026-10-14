@@ -44,7 +44,10 @@ Zati's pre-existing run `38455051476`, check `115495513701`, has an explicit
 annotation that recent account payments failed or its spending limit must be
 increased. Its job did not start. This establishes Zati's existing billing/spend
 availability problem, not the exact cause of Zamu's separate startup failure.
-Payment credentials and account spending policy were not changed.
+Payment credentials and account spending policy were not changed. The new PR 26
+run `38518850264`, check `115703672847`, failed before execution with the same
+billing/spending annotation. Its [candidate PR](https://github.com/zati-run/zati/pull/26)
+therefore remains draft and unmerged despite passing local source verification.
 
 ## Remaining installed-runtime acceptance
 

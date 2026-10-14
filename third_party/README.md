@@ -10,3 +10,10 @@ To update: resolve an explicitly reviewed upstream revision in an authorized
 checkout, run `go mod vendor`, copy its MISTT package closure and original
 module metadata here, preserve the license, update the required pseudo-version
 and this receipt, and rerun the contract/race tests with `GOWORK=off`.
+
+Go does not inherit dependency `replace` directives. Embedding applications must
+also provide an explicit MISTT replacement to their own reviewed source snapshot,
+or have authorized access to the pinned upstream module. Zati uses the former.
+The standalone example builds directly from this repository without that extra
+step. `mistt-source.json` records SHA-256 for every included upstream file; each
+was compared byte-for-byte with the landed source revision.

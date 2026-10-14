@@ -64,3 +64,25 @@ interruption recovery exchanges before approving friendly craft. Record failed,
 skipped and unobserved scenarios explicitly. Until those checks run, describe the
 result as a source candidate with measured component behavior, not a qualified
 daily-use voice release.
+
+## Configure and operate the candidate
+
+Follow Zati's `docs/implementation/local-voice.md` for its protected
+`ZATI_LOCAL_VOICE_CONFIG`, separate governed reasoning profile and source
+snapshot provenance. Choose English and the pinned Anna assets. Keep STT/TTS
+credential references separate from the OpenRouter reasoning profile. Do not put
+tokens in command-line arguments, the RFC, application logs or conversation text.
+
+MISTT's `dgx/conversation/README.md` and Narrate's
+`services/pocket/README.md` define the pinned service builds, asset preparation,
+health/authentication and rollback. Production images and persistent storage must
+exist before enabling voice; the completed ephemeral probes do not establish
+that installation. Use the tracked Spark API, retain unrelated workloads, verify
+both service health checks, and then explicitly start a fresh Mac voice session.
+
+Wake is opt-in. Start admits the selected conversation; mute disables wake and
+capture, and stop ends the active admission. Re-enable explicitly after lock,
+logout, permission loss or an unavailable service. Text chat remains available.
+For diagnosis retain timing, queue bounds, generation/sequence and error metadata;
+raw audio and transcripts are not diagnostic defaults. Roll back the application
+and speech manifests together to their recorded compatible revisions.

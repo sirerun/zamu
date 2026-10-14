@@ -10,8 +10,8 @@ acceptance are separate. Hosted speech and avatars remain deferred.
 | --- | --- | --- |
 | MISTT | `132460d785e7ffa40735e75a50245637e4466837`, base `4a66e95117cb2ae24fd25731bf717eee1679f0b4` | [PR 27](https://github.com/sirerun/MISTT/pull/27), landed `fef56673e2ac3c8a59a647a5069212081a9ae279`; identical tree and target reachability verified |
 | Narrate | `a8ad48879a4960f88810b2d8bb11989dc009c4bc`, base `29bc740031c8b26ca68a2d79e9702d5d91e7bb84` | [PR 3](https://github.com/narrate-it/narrate/pull/3), landed `5bcca2d357038a1b88b0c883dd7eabcb16cbd4c0`; identical tree and target reachability verified |
-| Zamu | `0ac91abece62c97c71390a7e364a3e80f2bb98fd`, base `71ddc205e6fe97e76cc0fd55792c789722d11c22` | [PR 2](https://github.com/sirerun/zamu/pull/2); independent final source review clean |
-| Zati | `a719d3ba6b5cf2ea3b88cac03abce64be981262a`, base `e46e1a5ded57346c62f87664960c8b517c3aa274` | [PR 26](https://github.com/zati-run/zati/pull/26), draft candidate reviewed clean; self-contained Mac debug build passes; CI/landing pending |
+| Zamu | `0ac91abece62c97c71390a7e364a3e80f2bb98fd`, base `71ddc205e6fe97e76cc0fd55792c789722d11c22` | [PR 2](https://github.com/sirerun/zamu/pull/2), landed `192d7e9118eab9b65d35c5451769b6732935f945`; final reviewed head `dee81c42bce50ccbfd87623f18e9c99748e03cf9` has identical landed tree |
+| Zati | `a719d3ba6b5cf2ea3b88cac03abce64be981262a`, base `e46e1a5ded57346c62f87664960c8b517c3aa274` | [PR 26](https://github.com/zati-run/zati/pull/26), landed `f04651b004ca0dcc200052f11715b1c9429893c5`; identical reviewed/landed tree; self-contained Mac debug build passes |
 
 Narrate's implementation owner independently reviewed Zamu and Zati; the Zamu
 owner independently reviewed Narrate, MISTT and the public demo. Blocking findings
@@ -37,8 +37,7 @@ Zamu's push run `38517432027` and PR run `38517466943` report
 `startup_failure`, synthetic path `BuildFailed`, zero jobs and no logs/check runs.
 The exact committed workflow passes actionlint; referenced action revisions exist.
 Actions is enabled and allows all actions. The account/backend cause is not known;
-no billing or policy setting was changed. No CI success or merge is claimed.
-Keep PR 2 open until the repository can execute its checks.
+no billing or policy setting was changed. No GitHub CI success is claimed. The owner subsequently selected local verification as the delivery gate; see the authorization below.
 
 Zati's pre-existing run `38455051476`, check `115495513701`, has an explicit
 annotation that recent account payments failed or its spending limit must be
@@ -47,7 +46,7 @@ availability problem, not the exact cause of Zamu's separate startup failure.
 Payment credentials and account spending policy were not changed. The new PR 26
 run `38518850264`, check `115703672847`, failed before execution with the same
 billing/spending annotation. Its [candidate PR](https://github.com/zati-run/zati/pull/26)
-therefore remains draft and unmerged despite passing local source verification.
+was subsequently merged under the owner's explicit local-verification instruction.
 
 ## Remaining installed-runtime acceptance
 
@@ -70,3 +69,18 @@ must listen to Anna and accept persona/craft. No mocked or source-only result
 satisfies those gates. The broad authorization removes a permission blocker; it
 does not create missing runtime configuration or substitute for a sleeping user's
 listening acceptance.
+
+## 2026-10-14: Local verification accepted and delivery completed
+
+The owner instructed: “Use local verification. I have no money for Github billing
+right now.” This replaces GitHub CI availability as the delivery gate for these
+changes. Billing, spending limits and repository protection settings were not
+changed. No administrator merge bypass was used.
+
+Immediately before merge, both PR heads and target bases still matched their
+reviewed revisions. Zamu PR 2 and Zati PR 26 were merged by rebase with exact-head
+guards. Fresh target fetches confirmed the landed commits and byte-identical
+Git trees against the locally tested candidates. Existing local test/build and
+independent-review evidence therefore remains applicable; no source changes
+required repeating expensive suites. Installed-runtime and owner acceptance
+remain pending as listed above.

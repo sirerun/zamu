@@ -1,0 +1,10 @@
+{
+  "stdout": "{\"records_audio_bytes\": 188160, \"terminal\": true, \"first_pcm_seconds\": 0.1511403859476559}\n{\"recognition\": {\"text\": \"Hello Zati, please tell me what I should work on next.\", \"finalized_samples\": 62720}, \"recognition_seconds\": 0.7922732069855556}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "controller_revision": "4869f60db7bfd9c7eb3d1a6d40f779e80cb232bb",
+  "controller_admission": "passed",
+  "controller_backend_poll": "passed",
+  "controller_session_end": "passed",
+  "physical_mac_audio": "not tested"
+}

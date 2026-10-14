@@ -1,6 +1,6 @@
 # Zamu delivery plan — Phase 1 natural voice
 
-Status: Phase 1 source implementation complete under the owner's explicit autonomous implementation authorization; final candidates verified and independently reviewed. Zamu/Zati CI and landing remain pending because GitHub cannot start checks. Code, runtime qualification and owner acceptance are tracked separately below. This document is the maintained delivery source; `docs/rfc/rfc-001.md` owns architecture. `~/Desktop/Zamu-Complete-Plan.md` is a regenerated combined snapshot.
+Status: Phase 1 source implementation complete under the owner's explicit autonomous implementation authorization; final candidates verified and independently reviewed. All four source components are landed; the owner accepted local verification as the delivery gate on 2026-10-14. Code, runtime qualification and owner acceptance are tracked separately below. This document is the maintained delivery source; `docs/rfc/rfc-001.md` owns architecture. `~/Desktop/Zamu-Complete-Plan.md` is a regenerated combined snapshot.
 
 ## Accepted scope
 
@@ -267,11 +267,11 @@ schema-conformance claim is made. Later hosted speech/avatar work stays deferred
 
 | Scope | Current evidence | Remaining gate |
 | --- | --- | --- |
-| T2.1–T2.3, T3.2 | Coordinator and four adapters; six-package race suite, vet, build and lint pass with published dependency pins | Published pins plus vendored-source race/vet/build/lint pass; CI startup unavailable and landing pending |
+| T2.1–T2.3, T3.2 | Coordinator and four adapters; six-package race suite, vet, build and lint pass with published dependency pins | Published pins plus vendored-source race/vet/build/lint pass; landed under the accepted local-verification gate |
 | T3.1, T3.3, T5.2 STT | MISTT PR 27 landed `fef56673e2ac3c8a59a647a5069212081a9ae279`; reviewed head `132460d785e7ffa40735e75a50245637e4466837`, base `4a66e95117cb2ae24fd25731bf717eee1679f0b4`; landed tree matches; Go/native/runtime and packaging checks pass | Real speaker/wake acceptance; persistent model storage and production image deployment |
 | T4.1–T4.2, T5.2 TTS | Narrate PR 3 landed `5bcca2d357038a1b88b0c883dd7eabcb16cbd4c0`; reviewed head `a8ad48879a4960f88810b2d8bb11989dc009c4bc`, base `29bc740031c8b26ca68a2d79e9702d5d91e7bb84`; CI build passed, landed tree matches | Host persona listening acceptance and installed runtime |
 | T5.3 | Anna first PCM 97/76 ms; STT 510–649 ms; concurrent Anna/STT 1.065 s; cancellation/recovery observed on tracked Spark CPU pods | Configured reasoning route, representative latency, cost and endurance |
-| T6.1–T6.4 | Governed host integration, generated specs, Flutter/native controls; full Mac debug app builds; 34 voice race cases, selected registry/context/LocalIO checks and 14 Flutter tests pass | Self-contained Go/Swift packaging, final Mac build and independent exact-head review pass; CI/landing and acoustic acceptance remain pending |
+| T6.1–T6.4 | Governed host integration, generated specs, Flutter/native controls; full Mac debug app builds; 34 voice race cases, selected registry/context/LocalIO checks and 14 Flutter tests pass | Self-contained Go/Swift packaging, final Mac build and independent exact-head review pass; source landed under local verification; acoustic acceptance remains pending |
 | T2.4 | Standalone public demo implemented; focused regressions and race suite pass; independent review clean | Real Mac/Spark/OpenRouter conversation |
 | T5.4 | Immutable separate governed voice profile and model limits implemented; typed/background messages retain their own profiles | No qualified live OpenRouter profile accessible in the normal product context; measured model/provider selection remains unobserved |
 
@@ -308,4 +308,6 @@ completion of their separately listed hardware or human acceptance stages.
 
 Final source candidates: [Zamu PR 2](https://github.com/sirerun/zamu/pull/2) and
 [Zati PR 26](https://github.com/zati-run/zati/pull/26). Both are independently
-reviewed and locally verified. MISTT PR 27 and Narrate PR 3 are merged.
+reviewed, locally verified and merged. MISTT PR 27 and Narrate PR 3 are also merged.
+The owner explicitly accepted local verification instead of unavailable GitHub CI
+on 2026-10-14; exact landed identities are recorded in `delivery.md`.

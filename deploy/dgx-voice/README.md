@@ -78,3 +78,8 @@ and restart the controller to return to its previous binary/configuration.
 Stop the owned runtime using Spark DELETE; retain the source, prepared models and
 credential directories for recovery. Do not remove unrelated pods or caches.
 Restore a compatible recorded runtime manifest before re-enabling voice.
+
+The installed Mac process was relaunched after setup. A process sample shows its
+main thread waiting in `SecItemCopyMatching` while SecurityAgent is running; it
+has not yet opened a window or connected to DGX. Owner Keychain approval remains
+necessary before the physical voice test. The password was not read or bypassed.

@@ -1,6 +1,6 @@
 # Zamu delivery plan — Phase 1 natural voice
 
-Status: Implementation-ready task decomposition; runtime and contract preflight remain prerequisites. All implementation tasks are pending. This document is the maintained delivery source; `docs/rfc/rfc-001.md` owns architecture. `~/Desktop/Zamu-Complete-Plan.md` is a regenerated combined snapshot.
+Status: Phase 1 implementation and verification in progress under the owner's explicit autonomous implementation authorization. Code, runtime qualification and owner acceptance are tracked separately below. This document is the maintained delivery source; `docs/rfc/rfc-001.md` owns architecture. `~/Desktop/Zamu-Complete-Plan.md` is a regenerated combined snapshot.
 
 ## Accepted scope
 
@@ -27,11 +27,11 @@ Ordinary source checks: Zamu Go formatting, unit/contract tests and race tests w
 
 ## Reconciliation of the previous Desktop plan
 
-All 63 original task IDs, pending statuses and role owners are retained. Owner decisions change E5 from mandatory local LLM to local speech plus OpenRouter; add wake/tolerance requirements; choose Anna; and explicitly defer avatar work. New IDs: T1.4, T1.5, T2.4, T3.3, T5.4, T6.4, T7.4 and T19.1–T19.4. Existing batch gates expand to cover their new members; demo gets B9. The 74 current tasks remain pending. Source snapshot and exact original task rows are preserved in `docs/plans/archive/zamu-complete-plan-original.md` as non-authoritative history. No prior content approval applies to this revision.
+All 63 original task IDs, pending statuses and role owners are retained. Owner decisions change E5 from mandatory local LLM to local speech plus OpenRouter; add wake/tolerance requirements; choose Anna; and explicitly defer avatar work. New IDs: T1.4, T1.5, T2.4, T3.3, T5.4, T6.4, T7.4 and T19.1–T19.4. Existing batch gates expand to cover their new members; demo gets B9. The original 74 tasks are retained; the execution ledger below records current evidence and review remediation. Source snapshot and exact original task rows are preserved in `docs/plans/archive/zamu-complete-plan-original.md` as non-authoritative history. No prior content approval applies to this revision.
 
 ## Delivery checklist
 
-All rows are pending. Dependencies indicate required outcomes. Cross-repository adapter development and candidate integration may use an explicitly pinned upstream candidate or stable fixture; this does not establish landed integration acceptance. A multi-repository batch reviews and lands each repository separately in upstream-first order, and release waits until all referenced dependencies are landed and reverified. Candidate pins must be replaced with landed versions before release.
+Unchecked rows have not yet satisfied their full acceptance and delivery gates. Dependencies indicate required outcomes. Cross-repository adapter development and candidate integration may use an explicitly pinned upstream candidate or stable fixture; this does not establish landed integration acceptance. A multi-repository batch reviews and lands each repository separately in upstream-first order, and release waits until all referenced dependencies are landed and reverified. Candidate pins must be replaced with landed versions before release.
 
 ### E1 — Contract and design freeze
 
@@ -127,7 +127,7 @@ Scope: T2.1, T2.2, T2.3.
 
 - [ ] T11.1 Verify candidate  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T2.1, T2.2, T2.3]  acc: [Changed-behavior tests, formatting, race checks where relevant and required repository gates pass on each exact candidate revision]
 - [ ] T11.2 Independent code review  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T11.1]  acc: [Independent reviewer records base and head SHAs, covered scope and findings; all blocking findings are resolved and re-reviewed]
-- [ ] T11.3 Merge reviewed candidates  Owner: Integration owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T11.2]  acc: [Only exact approved heads merge under repository policy and required checks; landed SHAs are recorded]
+- [ ] T11.3 Merge reviewed candidates  Owner: Integration owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T11.2, T21.3]  acc: [Only exact approved heads merge under repository policy and required checks; landed SHAs are recorded]
 - [ ] T11.4 Verify landed revisions  Owner: Integration owner  Est: TBD  kind: agent  stage: verify-landed  blocked-by: [T11.3]  acc: [Target branches contain the reviewed changes and focused checks pass on the landed revisions]
 
 ### B2 — MISTT and input adapter
@@ -136,7 +136,7 @@ Scope: T3.1, T3.2, T3.3.
 
 - [ ] T12.1 Verify candidate  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T3.1, T3.2, T3.3]  acc: [Changed-behavior tests, formatting, race checks where relevant and required repository gates pass on each exact candidate revision]
 - [ ] T12.2 Independent code review  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T12.1]  acc: [Independent reviewer records base and head SHAs, covered scope and findings; all blocking findings are resolved and re-reviewed]
-- [ ] T12.3 Merge reviewed candidates  Owner: Integration owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T12.2]  acc: [Only exact approved heads merge under repository policy and required checks; landed SHAs are recorded]
+- [ ] T12.3 Merge reviewed candidates  Owner: Integration owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T12.2, T21.6]  acc: [Only exact approved heads merge under repository policy and required checks; landed SHAs are recorded]
 - [ ] T12.4 Verify landed revisions  Owner: Integration owner  Est: TBD  kind: agent  stage: verify-landed  blocked-by: [T12.3]  acc: [Target branches contain the reviewed changes and focused checks pass on the landed revisions]
 
 ### B3 — Narrate and craft
@@ -163,7 +163,7 @@ Scope: T5.4, T6.1, T6.2, T6.4.
 
 - [ ] T15.1 Verify candidate  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T5.4, T6.1, T6.2, T6.4]  acc: [Changed-behavior tests, formatting, race checks where relevant and required repository gates pass on each exact candidate revision]
 - [ ] T15.2 Independent code review  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T15.1]  acc: [Independent reviewer records base and head SHAs, covered scope and findings; all blocking findings are resolved and re-reviewed]
-- [ ] T15.3 Merge reviewed candidates  Owner: Integration owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T15.2]  acc: [Only exact approved heads merge under repository policy and required checks; landed SHAs are recorded]
+- [ ] T15.3 Merge reviewed candidates  Owner: Integration owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T15.2, T21.6]  acc: [Only exact approved heads merge under repository policy and required checks; landed SHAs are recorded]
 - [ ] T15.4 Verify landed revisions  Owner: Integration owner  Est: TBD  kind: agent  stage: verify-landed  blocked-by: [T15.3]  acc: [Target branches contain the reviewed changes and focused checks pass on the landed revisions]
 
 ### B6 — Hosted adapters
@@ -256,3 +256,34 @@ Independent content review approved this standalone planning draft after two cor
 Independent content review identified three issues: backchannel suppression could consume the start of a command; a legacy table still required a local LLM; and speech feasibility/Anna identification did not precede contract freeze. All three were corrected and independently re-reviewed; the reviewer found no remaining substantive blockers after an explicit standalone-backchannel wording clarification, which is applied. Previous Desktop approval remains historical only.
 
 The full Wazi reader/schema/semantic gate was attempted with the installed Wazi checkout and failed because `wazi-contract` is unavailable. This document is a checked engineering plan draft, not an admitted executable lifecycle or a portable-conformance claim. Local checks passed: 74 unique pending tasks, all 63 original IDs and role owners preserved, all dependencies resolved, no dependency cycles, required task metadata and balanced Markdown fences. These checks are separate from the blocked conformance gate. Runtime, installation and human acceptance remain future work.
+
+
+## Autonomous implementation ledger — 2026-10-13
+
+The owner authorized implementing the complete Phase 1 RFC autonomously. This
+supersedes the draft's earlier statement that implementation was not authorized.
+Direct repository engineering continues; no Wazi service admission or portable
+schema-conformance claim is made. Later hosted speech/avatar work stays deferred.
+
+| Scope | Current evidence | Remaining gate |
+| --- | --- | --- |
+| T2.1–T2.3, T3.2 | Coordinator plus MISTT/Narrate/native/OpenRouter adapters; race tests pass across five packages; 40 endpoint policy fixtures pass | Exact final source review, dependency pins, CI and landing |
+| T3.1, T3.3 | Additive microphone gRPC; native shared capture, AEC, wake, local pause/stop, rendered receipts; legacy Go/Swift regressions exercised | Final native regression, real STT qualification and exact-head review |
+| T4.1–T4.2, part T5.2 | Narrate candidate a8ad488; Go race suite, six Python tests, actual CPU Anna service cancellation/recovery | CI and landing; host persona listening acceptance remains separate |
+| T5.3 | Anna first PCM 97/76 ms, cancellation 11 ms in a two-phrase CPU probe; exact receipt in Narrate | Simultaneous STT/TTS, reasoning route, representative latency and cost |
+| T6.1–T6.4 | Governed local voice integration, generated specs, Flutter controls, native bridge; focused host/Flutter tests and Swift typecheck | Final integration tests, dependency pins, CI, acoustic acceptance |
+| T2.4 | Public standalone demo under construction | Demo tests/review, real Mac conversation |
+
+These are implementation observations, not substitutes for E7 or T20.5 human and
+hardware acceptance. Native on-device Apple English recognition replaces the
+initial sherpa candidate: it must report on-device capability or fail unavailable,
+never use hosted speech. Candidate identity and limits belong in the runbook.
+
+### Review remediation
+
+- [ ] T21.1 Resolve coordinator review findings  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZAMU-01 punctuation-only input; R-ZAMU-02 final revision after commitment; R-ZAMU-03 backchannel versus completion; R-ZAMU-04 pending-pause cleanup; R-ZAMU-05 aggregate text bounds; R-ZAMU-06 cleanup error reporting; R-ZAMU-07 mute/reset isolation; R-ZAMU-08 responsive playback backpressure and buffer ownership; R-ZAMU-09 late idle transcript exclusion have fixes and regressions]
+- [ ] T21.2 Verify coordinator remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.1]  acc: [Affected deterministic tests and race checks pass at the reviewed revision]
+- [ ] T21.3 Re-review coordinator remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.2]  acc: [All R-ZAMU findings have exact-head disposition before T11.3]
+- [ ] T21.4 Resolve Zati integration review findings  Owner: Zati implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZATI-01 empty phrase marker is not played; R-ZATI-02 obsolete reply consumers cannot take new-turn output; R-ZATI-03 late Respond calls cannot replace newer admission; R-ZATI-04 required fresh admission is exposed explicitly; R-MEDIA-01 idle checkpoint cannot precede onset handling; R-DEMO-01 native session is UUID; R-ZATI-05 capture epochs reject delayed pre-mute events]
+- [ ] T21.5 Verify integration remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.4]  acc: [Affected host/native/adapter tests pass at current revisions]
+- [ ] T21.6 Re-review integration remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.5]  acc: [All R-ZATI and R-MEDIA findings have exact-head dispositions before T12.3 and T15.3]

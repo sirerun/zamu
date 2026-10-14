@@ -410,6 +410,9 @@ func (r *runtimeState) input(ctx context.Context, in InputEvent) error {
 		r.seq = in.Sequence
 		r.watermark = 0
 		r.active = true
+		if in.Kind == Activated {
+			r.awaitingAnswer = false
+		}
 		r.muted = false
 		r.lastActivity = r.s.cfg.Clock.Now()
 		return r.emit(Event{Kind: "listening"})
@@ -585,7 +588,7 @@ func (r *runtimeState) output(ctx context.Context, m message, wg *sync.WaitGroup
 		r.textBytes += len(ch.Text)
 		r.textSizes[ch.Sequence] = len(ch.Text)
 		r.textSequence = ch.Sequence
-		r.awaitingAnswer = m.reply.AwaitingAnswer
+		r.awaitingAnswer = r.awaitingAnswer || m.reply.AwaitingAnswer
 		select {
 		case r.chunks <- ch:
 		default:
@@ -649,6 +652,7 @@ func (r *runtimeState) output(ctx context.Context, m message, wg *sync.WaitGroup
 		}
 		r.receipt = *m.receipt
 		r.outputActive = false
+		r.lastActivity = r.s.cfg.Clock.Now()
 		return r.emit(Event{Kind: "completed", Receipt: r.receipt})
 	}
 	return nil
@@ -659,7 +663,7 @@ func (r *runtimeState) tick(ctx context.Context, wg *sync.WaitGroup) error {
 	if now.Sub(r.started) >= r.s.cfg.MaxSession {
 		return fmt.Errorf("voice session renewal required: %w", ErrClosed)
 	}
-	if r.active && !r.hasUtterance && !r.outputActive && !r.awaitingAnswer && now.Sub(r.lastActivity) >= r.s.cfg.IdleTimeout {
+	if r.active && !r.muted && !r.hasUtterance && !r.outputActive && now.Sub(r.lastActivity) >= r.s.cfg.IdleTimeout {
 		r.active = false
 		return r.emit(Event{Kind: "idle_timeout"})
 	}

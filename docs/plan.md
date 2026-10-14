@@ -37,21 +37,21 @@ Unchecked rows have not yet satisfied their full acceptance and delivery gates. 
 
 fidelity: executable
 
-- [ ] T1.1 Pin source revisions and reconcile interfaces  Owner: Integration owner  Est: TBD  kind: agent  stage: preflight  blocked-by: []  acc: [MISTT, Narrate, Zati and Zamu revisions are recorded; actual public APIs and current native behavior are inspected; the RFC source baseline is reconciled; existing paired capture, hosted speech and Narrate batch compatibility tests are identified]
+- [x] T1.1 Pin source revisions and reconcile interfaces  Owner: Integration owner  Est: TBD  kind: agent  stage: preflight  blocked-by: []  acc: [MISTT, Narrate, Zati and Zamu revisions are recorded; actual public APIs and current native behavior are inspected; the RFC source baseline is reconciled; existing paired capture, hosted speech and Narrate batch compatibility tests are identified]
 - [ ] T1.2 Freeze conversation and media contracts  Owner: Integration owner  Est: TBD  kind: agent  stage: author  blocked-by: [T1.1, T1.4, T1.5]  acc: [Listener, turn, agent, synthesis, wake and player contracts define ordering, finalized coverage, provisional pause tokens, generations, timing, queue limits, errors and cancellation; future avatar consumers only reuse playback events]
 - [ ] T1.3 Agree friendly persona and voice craft handoff  Owner: Voice craft owner  Est: TBD  kind: agent  stage: author  blocked-by: [T1.1]  acc: [Parallel prompt work supplies a versioned style contract and sample exchanges; Zati remains the only persona authority]
 
 - [ ] T1.4 Qualify wake, urgent-stop and tolerant detector candidates  Owner: Audio owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Pin licensed Mac-compatible sherpa-onnx English keyword-spotter candidate, Hey Zati tokenization and local stop-word path; record bounded backchannel classification design and fixture thresholds; failure requires a replacement candidate before contract freeze]
 
-- [ ] T1.5 Qualify speech feasibility and Anna asset identity  Owner: Audio owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Record concrete Anna preset/model asset hashes from the production receipt, license and persistent streaming feasibility on ARM64; probe candidate STT finalized-through coverage and conversational latency; reject batch-only assumptions and select a feasible backend before freezing contracts; bounded probes are distinct from full T5.3 acceptance]
+- [x] T1.5 Qualify speech feasibility and Anna asset identity  Owner: Audio owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Record concrete Anna preset/model asset hashes from the production receipt, license and persistent streaming feasibility on ARM64; probe candidate STT finalized-through coverage and conversational latency; reject batch-only assumptions and select a feasible backend before freezing contracts; bounded probes are distinct from full T5.3 acceptance]
 
 ### E2 — Reusable Zamu coordinator
 
 fidelity: executable
 
-- [ ] T2.1 Implement sessions, turn assembly and generation fences  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Deterministic tests demonstrate partial transcript replacement, exactly-once turn submission, candidate endpoint revocation, bounded queues, finalized recognition barrier, gap quarantine, and rejection of stale output]
-- [ ] T2.2 Implement interruption and playback receipts  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T2.1]  acc: [Interruption flushes playback and cancels obsolete response work; provisional pauses retain valid generations; backchannels resume from the acknowledged cursor without duplicate audio; clear interruptions or timeout invalidate; played progress and uncertain alignment are represented; task cancellation remains separate]
-- [ ] T2.3 Implement capability negotiation and lifecycle recovery  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T2.2]  acc: [Unsupported formats fail explicitly; disconnect, gaps, timeout and close paths terminate boundedly without silently replaying user turns]
+- [x] T2.1 Implement sessions, turn assembly and generation fences  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Deterministic tests demonstrate partial transcript replacement, exactly-once turn submission, candidate endpoint revocation, bounded queues, finalized recognition barrier, gap quarantine, and rejection of stale output]
+- [x] T2.2 Implement interruption and playback receipts  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T2.1]  acc: [Interruption flushes playback and cancels obsolete response work; provisional pauses retain valid generations; backchannels resume from the acknowledged cursor without duplicate audio; clear interruptions or timeout invalidate; played progress and uncertain alignment are represented; task cancellation remains separate]
+- [x] T2.3 Implement capability negotiation and lifecycle recovery  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T2.2]  acc: [Unsupported formats fail explicitly; disconnect, gaps, timeout and close paths terminate boundedly without silently replaying user turns]
 
 - [ ] T2.4 Deliver standalone reusable conversation demo  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T2.3, T3.2, T3.3, T4.2, T5.4, T6.2]  acc: [examples/conversation uses public interfaces and a tool-free OpenRouter host adapter; real wake/start, speech, backchannel resume, interruption and Spark-loss behavior work without Zati internal imports or avatar dependencies]
 
@@ -59,24 +59,24 @@ fidelity: executable
 
 fidelity: executable
 
-- [ ] T3.1 Add explicit microphone-only admission and speech activity events  Owner: MISTT implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Real subscription exposes ordered speech-start, speech-stop and RecognitionProgress finalized-through coverage; microphone-only mode is explicit; delayed finals and gaps are tested and existing paired behavior remains tested]
-- [ ] T3.2 Implement Zamu MISTT adapter  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T3.1, T2.1]  acc: [Adapter handles source filtering, segment revisions, RecognitionProgress finalized-through coverage, gaps and terminal errors through the real gRPC contract; delayed-final tests prevent premature commitment and no second microphone is opened]
+- [x] T3.1 Add explicit microphone-only admission and speech activity events  Owner: MISTT implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Real subscription exposes ordered speech-start, speech-stop and RecognitionProgress finalized-through coverage; microphone-only mode is explicit; delayed finals and gaps are tested and existing paired behavior remains tested]
+- [x] T3.2 Implement Zamu MISTT adapter  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T3.1, T2.1]  acc: [Adapter handles source filtering, segment revisions, RecognitionProgress finalized-through coverage, gaps and terminal errors through the real gRPC contract; delayed-final tests prevent premature commitment and no second microphone is opened]
 
-- [ ] T3.3 Implement local wake and duplex capture modes  Owner: MISTT implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T3.1, T1.4]  acc: [Single Mac capture owner supports armed-only local keyword detection, Hey Zati span and two-second volatile command buffer, authenticated activation, native activity/stop events and AEC playback reference; armed audio never leaves Mac; incompatible active paired sessions produce explicit busy without hijacking other clients; existing paired clients remain compatible]
+- [x] T3.3 Implement local wake and duplex capture modes  Owner: MISTT implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T3.1, T1.4]  acc: [Single Mac capture owner supports armed-only local keyword detection, Hey Zati span and two-second volatile command buffer, authenticated activation, native activity/stop events and AEC playback reference; armed audio never leaves Mac; incompatible active paired sessions produce explicit busy without hijacking other clients; existing paired clients remain compatible]
 
 ### E4 — Narrate conversational synthesis
 
 fidelity: executable
 
-- [ ] T4.1 Add public incremental synthesis API and local backend  Owner: Narrate implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Stable text chunks produce incremental PCM with format and generation identity; cancellation works; warm service avoids per-turn job and file-transfer startup]
+- [x] T4.1 Add public incremental synthesis API and local backend  Owner: Narrate implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Stable text chunks produce incremental PCM with format and generation identity; cancellation works; warm service avoids per-turn job and file-transfer startup]
 - [ ] T4.2 Integrate voice craft and synthesis adapter  Owner: Narrate implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T4.1, T1.3, T2.2]  acc: [Anna preset/model assets are pinned from the Zati video receipt and voice/style are pinned per response; phrasing stays natural; unsupported prosody is explicit; factual and verbatim speech text remains unchanged]
 
 ### E5 — Spark speech and OpenRouter reasoning qualification
 
 fidelity: executable
 
-- [ ] T5.1 Inspect capacity and select bounded model candidates  Owner: Runtime owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Current Spark availability, competing workloads, model licenses, ARM64 runtime support and resource limits are recorded without displacing unrelated workloads]
-- [ ] T5.2 Prepare reproducible local runtime manifests  Owner: Runtime owner  Est: TBD  kind: agent  stage: implement  blocked-by: [T5.1, T4.1]  acc: [Pinned local STT and Anna TTS configurations declare health, auth, warmup, limits, lifecycle and rollback using the approved workload mechanism]
+- [x] T5.1 Inspect capacity and select bounded model candidates  Owner: Runtime owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Current Spark availability, competing workloads, model licenses, ARM64 runtime support and resource limits are recorded without displacing unrelated workloads]
+- [x] T5.2 Prepare reproducible local runtime manifests  Owner: Runtime owner  Est: TBD  kind: agent  stage: implement  blocked-by: [T5.1, T4.1]  acc: [Pinned local STT and Anna TTS configurations declare health, auth, warmup, limits, lifecycle and rollback using the approved workload mechanism]
 - [ ] T5.3 Qualify simultaneous local inference  Owner: Runtime owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T5.2, T5.4, T3.1]  acc: [Authorized bounded qualification measures cold and warm latency with local STT/TTS active alongside the configured OpenRouter route; exact revisions, resources and failures are recorded]
 
 - [ ] T5.4 Select and configure the voice reasoning model  Owner: Zati implementer  Est: TBD  kind: agent  stage: implement  blocked-by: [T1.2]  acc: [Separate voice.reasoning_model selects the ordinary governed OpenRouter route, preserves worker/chat profiles, exposes cost and token limits, and pins a measured low-cost model/provider with tool fidelity; no speech credentials are misused as LLM configuration]
@@ -209,7 +209,7 @@ These steps remain subject to explicit release/deployment scope and existing hos
 - [ ] T20.1 Package local voice release candidates  Owner: Release owner  Est: TBD  kind: agent  stage: implement  blocked-by: [T11.4, T12.4, T13.4, T14.4, T15.4, T19.4]  acc: [Pinned library versions and reproducible application/runtime artifacts identify all landed revisions and include migration and rollback instructions]
 - [ ] T20.2 Independently review release packaging  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T20.1]  acc: [Exact packaging diff and artifact provenance reviewed; any code changes pass required checks and resolve blocking findings]
 - [ ] T20.3 Land and verify packaging changes  Owner: Release owner  Est: TBD  kind: agent  stage: merge  blocked-by: [T20.2]  acc: [Reviewed packaging revisions are merged under repository policy and target reachability and artifact correspondence are verified]
-- [ ] T20.4 Install authorized local candidate  Owner: Release owner  Est: TBD  kind: agent  stage: deploy  blocked-by: [T20.3]  acc: [Explicit installation authority recorded; correct native binary and Spark services activated with preserved settings and tested rollback]  blocked: Requires installation authority and qualified deployment route
+- [ ] T20.4 Install authorized local candidate  Owner: Release owner  Est: TBD  kind: agent  stage: deploy  blocked-by: [T20.3]  acc: [Explicit installation authority recorded; correct native binary and Spark services activated with preserved settings and tested rollback]  blocked: Installation authority granted; persistent storage, qualified deployment route and runtime configuration remain unavailable
 - [ ] T20.5 Accept installed daily-use release  Owner: Owner  Est: TBD  kind: human  stage: verify  blocked-by: [T20.4, T7.1, T7.2, T7.3, T7.4]  acc: [Installed exact revision passes real conversation, Hey Zati, backchannel resume, interruption, speech locality, recovery and owner listening acceptance]
 - [ ] T20.6 Complete operational handoff  Owner: Operations owner  Est: TBD  kind: agent  stage: author  blocked-by: [T20.5]  acc: [Runbook explains wake opt-in/off, start, stop, mute, privacy boundaries, OpenRouter costs, health, model versions, latency diagnostics, retention, resource limits, renewal and rollback without secrets]
 
@@ -245,7 +245,7 @@ For every task completion record task ID, source revision, check command or proc
 
 Before implementation, reconcile current branches and ongoing work in MISTT, Narrate and Zati. Preserve the separate friendly-prompt session's changes. This document does not assign that session new work or send it a message.
 
-The companion RFC is `docs/rfc/rfc-001.md`; it is included in full in the Desktop snapshot. Reconcile the snapshot with repository sources before executing any task. Model choices and measured performance remain open. No implementation work has been performed as part of writing this plan.
+The companion RFC is `docs/rfc/rfc-001.md`; it is included in full in the Desktop snapshot. Reconcile the snapshot with repository sources before executing any task. Model choices and measured performance remain open. The original planning revision contained no implementation; the implementation ledger below supersedes that historical state.
 
 ## Historical document review record (prior Desktop draft only)
 
@@ -267,12 +267,13 @@ schema-conformance claim is made. Later hosted speech/avatar work stays deferred
 
 | Scope | Current evidence | Remaining gate |
 | --- | --- | --- |
-| T2.1–T2.3, T3.2 | Coordinator plus MISTT/Narrate/native/OpenRouter adapters; race tests pass across five packages; 40 endpoint policy fixtures pass | Exact final source review, dependency pins, CI and landing |
-| T3.1, T3.3 | Additive microphone gRPC; native shared capture, AEC, wake, local pause/stop, rendered receipts; legacy Go/Swift regressions exercised | Final native regression, real STT qualification and exact-head review |
-| T4.1–T4.2, part T5.2 | Narrate candidate a8ad488; Go race suite, six Python tests, actual CPU Anna service cancellation/recovery | CI and landing; host persona listening acceptance remains separate |
-| T5.3 | Anna first PCM 97/76 ms, cancellation 11 ms in a two-phrase CPU probe; exact receipt in Narrate | Simultaneous STT/TTS, reasoning route, representative latency and cost |
-| T6.1–T6.4 | Governed local voice integration, generated specs, Flutter controls, native bridge; focused host/Flutter tests and Swift typecheck | Final integration tests, dependency pins, CI, acoustic acceptance |
-| T2.4 | Public standalone demo under construction | Demo tests/review, real Mac conversation |
+| T2.1–T2.3, T3.2 | Coordinator and four adapters; six-package race suite, vet, build and lint pass with published dependency pins | Final vendored-source check, CI and landing |
+| T3.1, T3.3, T5.2 STT | MISTT PR 27 landed `fef56673e2ac3c8a59a647a5069212081a9ae279`; reviewed head `132460d785e7ffa40735e75a50245637e4466837`, base `4a66e95117cb2ae24fd25731bf717eee1679f0b4`; landed tree matches; Go/native/runtime and packaging checks pass | Real speaker/wake acceptance; persistent model storage and production image deployment |
+| T4.1–T4.2, T5.2 TTS | Narrate PR 3 landed `5bcca2d357038a1b88b0c883dd7eabcb16cbd4c0`; reviewed head `a8ad48879a4960f88810b2d8bb11989dc009c4bc`, base `29bc740031c8b26ca68a2d79e9702d5d91e7bb84`; CI build passed, landed tree matches | Host persona listening acceptance and installed runtime |
+| T5.3 | Anna first PCM 97/76 ms; STT 510–649 ms; concurrent Anna/STT 1.065 s; cancellation/recovery observed on tracked Spark CPU pods | Configured reasoning route, representative latency, cost and endurance |
+| T6.1–T6.4 | Governed host integration, generated specs, Flutter/native controls; full Mac debug app builds; 34 voice race cases, selected registry/context/LocalIO checks and 14 Flutter tests pass | Self-contained dependency packaging, final review/CI/landing; acoustic acceptance |
+| T2.4 | Standalone public demo implemented; focused regressions and race suite pass; independent review clean | Real Mac/Spark/OpenRouter conversation |
+| T5.4 | Immutable separate governed voice profile and model limits implemented; typed/background messages retain their own profiles | No qualified live OpenRouter profile accessible in the normal product context; measured model/provider selection remains unobserved |
 
 These are implementation observations, not substitutes for E7 or T20.5 human and
 hardware acceptance. Native on-device Apple English recognition replaces the
@@ -281,9 +282,22 @@ never use hosted speech. Candidate identity and limits belong in the runbook.
 
 ### Review remediation
 
-- [ ] T21.1 Resolve coordinator review findings  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZAMU-01 punctuation-only input; R-ZAMU-02 final revision after commitment; R-ZAMU-03 backchannel versus completion; R-ZAMU-04 pending-pause cleanup; R-ZAMU-05 aggregate text bounds; R-ZAMU-06 cleanup error reporting; R-ZAMU-07 mute/reset isolation; R-ZAMU-08 responsive playback backpressure and buffer ownership; R-ZAMU-09 late idle transcript exclusion have fixes and regressions]
-- [ ] T21.2 Verify coordinator remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.1]  acc: [Affected deterministic tests and race checks pass at the reviewed revision]
+- [x] T21.1 Resolve coordinator review findings  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZAMU-01 punctuation-only input; R-ZAMU-02 final revision after commitment; R-ZAMU-03 backchannel versus completion; R-ZAMU-04 pending-pause cleanup; R-ZAMU-05 aggregate text bounds; R-ZAMU-06 cleanup error reporting; R-ZAMU-07 mute/reset isolation; R-ZAMU-08 responsive playback backpressure and buffer ownership; R-ZAMU-09 late idle transcript exclusion; R-ZAMU-10 question-answer state and idle expiry have fixes and regressions]
+- [x] T21.2 Verify coordinator remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.1]  acc: [Affected deterministic tests and race checks pass at the reviewed revision]
 - [ ] T21.3 Re-review coordinator remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.2]  acc: [All R-ZAMU findings have exact-head disposition before T11.3]
-- [ ] T21.4 Resolve Zati integration review findings  Owner: Zati implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZATI-01 empty phrase marker is not played; R-ZATI-02 obsolete reply consumers cannot take new-turn output; R-ZATI-03 late Respond calls cannot replace newer admission; R-ZATI-04 required fresh admission is exposed explicitly; R-MEDIA-01 idle checkpoint cannot precede onset handling; R-DEMO-01 native session is UUID; R-ZATI-05 capture epochs reject delayed pre-mute events]
-- [ ] T21.5 Verify integration remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.4]  acc: [Affected host/native/adapter tests pass at current revisions]
+- [x] T21.4 Resolve Zati integration review findings  Owner: Zati implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZATI-01 empty phrase marker is not played; R-ZATI-02 obsolete reply consumers cannot take new-turn output; R-ZATI-03 late Respond calls cannot replace newer admission; R-ZATI-04 required fresh admission is exposed explicitly; R-MEDIA-01 idle checkpoint cannot precede onset handling; R-DEMO-01 native session is UUID; R-ZATI-05 capture epochs reject delayed pre-mute events; R-ZATI-06 failure/disposal queues preserve shutdown receipts; R-ZATI-07 craft/profile applies only to prebound voice sources]
+- [x] T21.5 Verify integration remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.4]  acc: [Affected host/native/adapter tests pass at current revisions]
 - [ ] T21.6 Re-review integration remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.5]  acc: [All R-ZATI and R-MEDIA findings have exact-head dispositions before T12.3 and T15.3]
+
+### Verification boundaries
+
+A complete 237-case Zati execution race suite exceeded its 600-second limit; it
+is not counted as passing. Focused changed-behavior suites pass. No real acoustic,
+owner listening, two-hour endurance, or live reasoning-cost result is inferred
+from these tests. Application-level outbound guards in the Spark probes do not
+establish kernel-level egress enforcement. Probe pods were deleted. Persistent
+Whisper storage and production service images are not installed.
+
+Build delivery uses reviewed Apache-2.0 source snapshots where private upstream
+repositories prevent credential-free CI. Each snapshot retains license and exact
+revision provenance; no personal token or workstation path is required.

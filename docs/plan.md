@@ -1,6 +1,6 @@
 # Zamu delivery plan — Phase 1 natural voice
 
-Status: Phase 1 implementation and verification in progress under the owner's explicit autonomous implementation authorization. Code, runtime qualification and owner acceptance are tracked separately below. This document is the maintained delivery source; `docs/rfc/rfc-001.md` owns architecture. `~/Desktop/Zamu-Complete-Plan.md` is a regenerated combined snapshot.
+Status: Phase 1 source implementation complete under the owner's explicit autonomous implementation authorization; final candidates verified and independently reviewed. Zamu/Zati CI and landing remain pending because GitHub cannot start checks. Code, runtime qualification and owner acceptance are tracked separately below. This document is the maintained delivery source; `docs/rfc/rfc-001.md` owns architecture. `~/Desktop/Zamu-Complete-Plan.md` is a regenerated combined snapshot.
 
 ## Accepted scope
 
@@ -8,7 +8,7 @@ Phase 1: English conversation in Zati Mac through speakers, local MISTT STT and 
 
 ## Source and qualification
 
-See RFC section 15 for inspected source revisions and concrete entrypoints. Inspection found a stale primary MISTT checkout, paired-only capture, no recognition completeness watermark, Zati's destructive interruption/fixed silence/busy-drop path, and Narrate's batch Pocket pipeline. Anna was explicitly selected for the owner's Zati videos. Native capture ownership and AEC reference transport must be designed together.
+See RFC section 15 for inspected source revisions and concrete entrypoints. Initial pre-implementation inspection found a stale primary MISTT checkout, paired-only capture, no recognition completeness watermark, Zati's destructive interruption/fixed silence/busy-drop path, and Narrate's batch Pocket pipeline. Anna was explicitly selected for the owner's Zati videos. The resulting single-owner capture and AEC design is implemented as recorded in RFC section 16 and the delivery receipt.
 
 Executor: direct engineering in isolated repository worktrees, inheriting the active session selection. No remote execution route or runtime lifecycle is admitted by this plan. Task owners are responsibility roles, not assigned workers. Estimates remain TBD until preflight. Batches retain at most three coherent implementation members per session by default; larger scopes split along repository/test boundaries while preserving IDs and gates. Each changed repository gets independent exact-revision review and its own landing evidence.
 
@@ -27,7 +27,7 @@ Ordinary source checks: Zamu Go formatting, unit/contract tests and race tests w
 
 ## Reconciliation of the previous Desktop plan
 
-All 63 original task IDs, pending statuses and role owners are retained. Owner decisions change E5 from mandatory local LLM to local speech plus OpenRouter; add wake/tolerance requirements; choose Anna; and explicitly defer avatar work. New IDs: T1.4, T1.5, T2.4, T3.3, T5.4, T6.4, T7.4 and T19.1–T19.4. Existing batch gates expand to cover their new members; demo gets B9. The original 74 tasks are retained; the execution ledger below records current evidence and review remediation. Source snapshot and exact original task rows are preserved in `docs/plans/archive/zamu-complete-plan-original.md` as non-authoritative history. No prior content approval applies to this revision.
+All 63 original task IDs and role owners are retained; completion status now follows the implementation evidence. Owner decisions change E5 from mandatory local LLM to local speech plus OpenRouter; add wake/tolerance requirements; choose Anna; and explicitly defer avatar work. New IDs: T1.4, T1.5, T2.4, T3.3, T5.4, T6.4, T7.4 and T19.1–T19.4. Existing batch gates expand to cover their new members; demo gets B9. The original 74 tasks are retained; the execution ledger below records current evidence and review remediation. Source snapshot and exact original task rows are preserved in `docs/plans/archive/zamu-complete-plan-original.md` as non-authoritative history. No prior content approval applies to this revision.
 
 ## Delivery checklist
 
@@ -41,7 +41,7 @@ fidelity: executable
 - [ ] T1.2 Freeze conversation and media contracts  Owner: Integration owner  Est: TBD  kind: agent  stage: author  blocked-by: [T1.1, T1.4, T1.5]  acc: [Listener, turn, agent, synthesis, wake and player contracts define ordering, finalized coverage, provisional pause tokens, generations, timing, queue limits, errors and cancellation; future avatar consumers only reuse playback events]
 - [ ] T1.3 Agree friendly persona and voice craft handoff  Owner: Voice craft owner  Est: TBD  kind: agent  stage: author  blocked-by: [T1.1]  acc: [Parallel prompt work supplies a versioned style contract and sample exchanges; Zati remains the only persona authority]
 
-- [ ] T1.4 Qualify wake, urgent-stop and tolerant detector candidates  Owner: Audio owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Pin licensed Mac-compatible sherpa-onnx English keyword-spotter candidate, Hey Zati tokenization and local stop-word path; record bounded backchannel classification design and fixture thresholds; failure requires a replacement candidate before contract freeze]
+- [ ] T1.4 Qualify wake, urgent-stop and tolerant detector candidates  Owner: Audio owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Qualify the selected Apple on-device English detector on the target Mac/OS, recording capability and OS identity, Hey Zati phrase matching and local stop-word path; record bounded backchannel classification design and fixture thresholds; failure requires a replacement candidate before contract freeze]
 
 - [x] T1.5 Qualify speech feasibility and Anna asset identity  Owner: Audio owner  Est: TBD  kind: agent  stage: preflight  blocked-by: [T1.1]  acc: [Record concrete Anna preset/model asset hashes from the production receipt, license and persistent streaming feasibility on ARM64; probe candidate STT finalized-through coverage and conversational latency; reject batch-only assumptions and select a feasible backend before freezing contracts; bounded probes are distinct from full T5.3 acceptance]
 
@@ -251,11 +251,11 @@ The companion RFC is `docs/rfc/rfc-001.md`; it is included in full in the Deskto
 
 Independent content review approved this standalone planning draft after two corrections: explicit recognition finalized-through coverage in the MISTT tasks, and pinned candidate integration with upstream-first landing to avoid implicit cross-repository dependency cycles. No remaining content blockers were reported. Review covered requirement coverage, architecture consistency and delivery sequencing, not source compatibility or runtime performance. Local checks confirmed 63 unique task IDs, resolved dependencies, no dependency cycles, required task metadata and balanced code fences. No portable Wazi conformance or execution admission claimed.
 
-## Current document validation and review
+## Planning-stage document validation and review (historical)
 
 Independent content review identified three issues: backchannel suppression could consume the start of a command; a legacy table still required a local LLM; and speech feasibility/Anna identification did not precede contract freeze. All three were corrected and independently re-reviewed; the reviewer found no remaining substantive blockers after an explicit standalone-backchannel wording clarification, which is applied. Previous Desktop approval remains historical only.
 
-The full Wazi reader/schema/semantic gate was attempted with the installed Wazi checkout and failed because `wazi-contract` is unavailable. This document is a checked engineering plan draft, not an admitted executable lifecycle or a portable-conformance claim. Local checks passed: 74 unique pending tasks, all 63 original IDs and role owners preserved, all dependencies resolved, no dependency cycles, required task metadata and balanced Markdown fences. These checks are separate from the blocked conformance gate. Runtime, installation and human acceptance remain future work.
+The full Wazi reader/schema/semantic gate was attempted with the installed Wazi checkout and failed because `wazi-contract` is unavailable. This document is a checked engineering plan draft, not an admitted executable lifecycle or a portable-conformance claim. Local checks passed: 74 unique pending tasks, all 63 original IDs and role owners preserved, all dependencies resolved, no dependency cycles, required task metadata and balanced Markdown fences. These planning-stage checks are separate from the blocked conformance gate. Subsequent component runtime probes are recorded below; full installed-runtime and human acceptance remain pending.
 
 
 ## Autonomous implementation ledger — 2026-10-13
@@ -267,11 +267,11 @@ schema-conformance claim is made. Later hosted speech/avatar work stays deferred
 
 | Scope | Current evidence | Remaining gate |
 | --- | --- | --- |
-| T2.1–T2.3, T3.2 | Coordinator and four adapters; six-package race suite, vet, build and lint pass with published dependency pins | Final vendored-source check, CI and landing |
+| T2.1–T2.3, T3.2 | Coordinator and four adapters; six-package race suite, vet, build and lint pass with published dependency pins | Published pins plus vendored-source race/vet/build/lint pass; CI startup unavailable and landing pending |
 | T3.1, T3.3, T5.2 STT | MISTT PR 27 landed `fef56673e2ac3c8a59a647a5069212081a9ae279`; reviewed head `132460d785e7ffa40735e75a50245637e4466837`, base `4a66e95117cb2ae24fd25731bf717eee1679f0b4`; landed tree matches; Go/native/runtime and packaging checks pass | Real speaker/wake acceptance; persistent model storage and production image deployment |
 | T4.1–T4.2, T5.2 TTS | Narrate PR 3 landed `5bcca2d357038a1b88b0c883dd7eabcb16cbd4c0`; reviewed head `a8ad48879a4960f88810b2d8bb11989dc009c4bc`, base `29bc740031c8b26ca68a2d79e9702d5d91e7bb84`; CI build passed, landed tree matches | Host persona listening acceptance and installed runtime |
 | T5.3 | Anna first PCM 97/76 ms; STT 510–649 ms; concurrent Anna/STT 1.065 s; cancellation/recovery observed on tracked Spark CPU pods | Configured reasoning route, representative latency, cost and endurance |
-| T6.1–T6.4 | Governed host integration, generated specs, Flutter/native controls; full Mac debug app builds; 34 voice race cases, selected registry/context/LocalIO checks and 14 Flutter tests pass | Self-contained dependency packaging, final review/CI/landing; acoustic acceptance |
+| T6.1–T6.4 | Governed host integration, generated specs, Flutter/native controls; full Mac debug app builds; 34 voice race cases, selected registry/context/LocalIO checks and 14 Flutter tests pass | Self-contained Go/Swift packaging, final Mac build and independent exact-head review pass; CI/landing and acoustic acceptance remain pending |
 | T2.4 | Standalone public demo implemented; focused regressions and race suite pass; independent review clean | Real Mac/Spark/OpenRouter conversation |
 | T5.4 | Immutable separate governed voice profile and model limits implemented; typed/background messages retain their own profiles | No qualified live OpenRouter profile accessible in the normal product context; measured model/provider selection remains unobserved |
 
@@ -284,10 +284,10 @@ never use hosted speech. Candidate identity and limits belong in the runbook.
 
 - [x] T21.1 Resolve coordinator review findings  Owner: Zamu implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZAMU-01 punctuation-only input; R-ZAMU-02 final revision after commitment; R-ZAMU-03 backchannel versus completion; R-ZAMU-04 pending-pause cleanup; R-ZAMU-05 aggregate text bounds; R-ZAMU-06 cleanup error reporting; R-ZAMU-07 mute/reset isolation; R-ZAMU-08 responsive playback backpressure and buffer ownership; R-ZAMU-09 late idle transcript exclusion; R-ZAMU-10 question-answer state and idle expiry have fixes and regressions]
 - [x] T21.2 Verify coordinator remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.1]  acc: [Affected deterministic tests and race checks pass at the reviewed revision]
-- [ ] T21.3 Re-review coordinator remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.2]  acc: [All R-ZAMU findings have exact-head disposition before T11.3]
-- [x] T21.4 Resolve Zati integration review findings  Owner: Zati implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZATI-01 empty phrase marker is not played; R-ZATI-02 obsolete reply consumers cannot take new-turn output; R-ZATI-03 late Respond calls cannot replace newer admission; R-ZATI-04 required fresh admission is exposed explicitly; R-MEDIA-01 idle checkpoint cannot precede onset handling; R-DEMO-01 native session is UUID; R-ZATI-05 capture epochs reject delayed pre-mute events; R-ZATI-06 failure/disposal queues preserve shutdown receipts; R-ZATI-07 craft/profile applies only to prebound voice sources]
+- [x] T21.3 Re-review coordinator remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.2]  acc: [All R-ZAMU findings have exact-head disposition before T11.3]
+- [x] T21.4 Resolve Zati integration review findings  Owner: Zati implementer  Est: TBD  kind: agent  stage: implement  blocked-by: []  acc: [R-ZATI-01 empty phrase marker is not played; R-ZATI-02 obsolete reply consumers cannot take new-turn output; R-ZATI-03 late Respond calls cannot replace newer admission; R-ZATI-04 required fresh admission is exposed explicitly; R-MEDIA-01 idle checkpoint cannot precede onset handling; R-DEMO-01 native session is UUID; R-ZATI-05 capture epochs reject delayed pre-mute events; R-ZATI-06 failure/disposal queues preserve shutdown receipts; R-ZATI-07 craft/profile applies only to prebound voice sources; R-ZATI-08 dependency integrity rejects version-qualified replacement overrides]
 - [x] T21.5 Verify integration remediation  Owner: Integration owner  Est: TBD  kind: agent  stage: verify  blocked-by: [T21.4]  acc: [Affected host/native/adapter tests pass at current revisions]
-- [ ] T21.6 Re-review integration remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.5]  acc: [All R-ZATI and R-MEDIA findings have exact-head dispositions before T12.3 and T15.3]
+- [x] T21.6 Re-review integration remediation  Owner: Independent reviewer  Est: TBD  kind: agent  stage: review  blocked-by: [T21.5]  acc: [All R-ZATI and R-MEDIA findings have exact-head dispositions before T12.3 and T15.3]
 
 ### Verification boundaries
 
@@ -301,3 +301,11 @@ Whisper storage and production service images are not installed.
 Build delivery uses reviewed Apache-2.0 source snapshots where private upstream
 repositories prevent credential-free CI. Each snapshot retains license and exact
 revision provenance; no personal token or workstation path is required.
+
+The exact source, review, CI and installed-runtime limitations are recorded in
+[delivery.md](delivery.md). Do not interpret checked implementation tasks as
+completion of their separately listed hardware or human acceptance stages.
+
+Final source candidates: [Zamu PR 2](https://github.com/sirerun/zamu/pull/2) and
+[Zati PR 26](https://github.com/zati-run/zati/pull/26). Both are independently
+reviewed and locally verified. MISTT PR 27 and Narrate PR 3 are merged.

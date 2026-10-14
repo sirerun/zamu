@@ -1,0 +1,19 @@
+{
+  "pod": "zamu-contract-0ac91ab-20261014",
+  "revision": "0ac91abece62c97c71390a7e364a3e80f2bb98fd",
+  "image": "docker.io/library/golang@sha256:3fc85666d679424f406bbe27d9ffb24df50d5d800380f365c9e7cf6778072a75",
+  "source_archive_sha256": "a8845d2a236cdfa7921b399021ea213ef1f5948a321da6ca586131d2df5ba92a",
+  "cpu": 2,
+  "memory": "3Gi",
+  "gpu": 0,
+  "result": "passed",
+  "commands": [
+    "go test -p 1 -race -timeout 120s ./...",
+    "go vet ./...",
+    "go build ./..."
+  ],
+  "toolchain": "go1.26.2 linux/arm64",
+  "logs": "zamu-linux-0ac91ab.log",
+  "limitation": "CPU source verification only; not GitHub CI or audio acceptance",
+  "pod_deleted": true
+}

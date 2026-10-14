@@ -1,0 +1,15 @@
+b5194a4c0d64 go version go1.26.2 linux/arm64
+b5194a4c0d64 go: downloading google.golang.org/grpc v1.83.1
+b5194a4c0d64 go: downloading github.com/narrate-it/narrate v1.1.1-0.20261014051122-5bcca2d35703
+b5194a4c0d64 go: downloading google.golang.org/protobuf v1.36.11
+b5194a4c0d64 go: downloading golang.org/x/net v0.55.0
+b5194a4c0d64 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20260526163538-3dc84a4a5aaa
+b5194a4c0d64 go: downloading golang.org/x/sys v0.45.0
+b5194a4c0d64 go: downloading golang.org/x/text v0.37.0
+b5194a4c0d64 ok  	github.com/sirerun/zamu	1.030s
+b5194a4c0d64 ok  	github.com/sirerun/zamu/adapters/mistt	1.035s
+b5194a4c0d64 ok  	github.com/sirerun/zamu/adapters/narrate	1.014s
+b5194a4c0d64 ok  	github.com/sirerun/zamu/adapters/native	2.032s
+b5194a4c0d64 ok  	github.com/sirerun/zamu/adapters/openrouter	1.016s
+b5194a4c0d64 ok  	github.com/sirerun/zamu/examples/conversation	1.014s
+b5194a4c0d64 ZAMU_LINUX_CHECKS_PASS

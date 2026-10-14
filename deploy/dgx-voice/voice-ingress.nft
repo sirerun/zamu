@@ -1,0 +1,6 @@
+table inet zati_voice {
+ chain private_ingress {
+  type filter hook prerouting priority -110; policy accept;
+  iifname != "lo" tcp dport { 18792, 18092 } drop
+ }
+}

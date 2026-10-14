@@ -1,0 +1,10 @@
+[Unit]
+Description=Restrict Zati speech ports to local controller
+Before=spark.service
+After=network-pre.target
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/nft -f /etc/zati-voice-ingress.nft
+[Install]
+WantedBy=multi-user.target

@@ -73,6 +73,8 @@ Hardware wake accuracy, speaker echo performance, long-session latency and owner
 voice acceptance require the separate qualification procedure. Passing these tests
 does not establish those results.
 
-Private upstream source dependencies are included under [third_party](third_party/README.md)
-with licenses and exact revision receipts. Build and test a fresh checkout with
-`GOWORK=off go test ./...`; no sibling checkout or private dependency token is needed.
+Zamu imports MISTT from its private repository as an ordinary Go module; there
+is no vendored source or `replace` directive. Set `GOPRIVATE=github.com/sirerun/*`
+and give `git` read access to `sirerun/MISTT` (for example with
+`gh auth setup-git`), then run `GOWORK=off go test ./...`. CI reads the
+`SIRERUN_READ_TOKEN` repository secret for the same access.

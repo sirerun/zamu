@@ -5,6 +5,12 @@ on:
     branches: [main]
 permissions:
   contents: read
+env:
+  # MISTT is a private module; git reads this read-only token for github.com/sirerun only.
+  GOPRIVATE: github.com/sirerun/*
+  GIT_CONFIG_COUNT: "1"
+  GIT_CONFIG_KEY_0: url.https://x-access-token:${{ secrets.SIRERUN_READ_TOKEN }}@github.com/sirerun/.insteadOf
+  GIT_CONFIG_VALUE_0: https://github.com/sirerun/
 jobs:
   test:
     runs-on: ubuntu-latest

@@ -3,8 +3,8 @@ module github.com/sirerun/zamu
 go 1.25.0
 
 require (
-	github.com/narrate-it/narrate v1.1.1-0.20261016215244-e7cf26477d5b
-	github.com/sirerun/MISTT v0.0.0-20261101055645-5b75f01e0b71
+	github.com/narrate-it/narrate v1.2.1
+	github.com/sirerun/MISTT v0.2.0
 	google.golang.org/grpc v1.83.1
 )
 

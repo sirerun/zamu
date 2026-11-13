@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-13",
+  "plan_reference": "docs/plan.md T5.4 (provider-measurement slice)",
+  "endpoint": "https://openrouter.ai/api/v1",
+  "cap_usd": 5,
+  "actual_spend_usd": 0.00012,
+  "spend_cross_check": {
+    "account_usage_delta_usd": 0.000036,
+    "token_pricing_computed_usd": 0.000101
+  },
+  "method": {
+    "models_probed": 3,
+    "latency_samples_per_model": 6,
+    "latency_prompt": "Reply with exactly the word OK and nothing else.",
+    "latency_max_tokens": 64,
+    "latency_temperature": 0,
+    "tool_scenarios_per_model": 3,
+    "tool_name": "get_weather",
+    "tool_cities": ["Paris", "Tokyo", "London"],
+    "tool_choice": "auto",
+    "tool_max_tokens": 256,
+    "tool_temperature": 0,
+    "cost_formula": "prompt_tokens*prompt_price + completion_tokens*completion_price using /models pricing",
+    "cost_cross_check": "account usage delta",
+    "reasoning_credential": "OPENROUTER_API_KEY",
+    "credential_value_recorded": false,
+    "speech_credentials_used_as_reasoning": false,
+    "billing_account_changed": false
+  },
+  "models": [
+    {
+      "model": "mistralai/mistral-nemo",
+      "latency_samples": 6,
+      "median_latency_ms": 405,
+      "latency_range_ms": [384, 1165],
+      "tool_fidelity": { "passed": 3, "total": 3 },
+      "prompt_price_per_million_usd": 0.029,
+      "completion_price_per_million_usd": 0.030,
+      "context_length": 131072
+    },
+    {
+      "model": "meta-llama/llama-3.1-8b-instruct",
+      "latency_samples": 6,
+      "median_latency_ms": 452,
+      "latency_range_ms": [307, 832],
+      "tool_fidelity": { "passed": 3, "total": 3 },
+      "prompt_price_per_million_usd": 0.020,
+      "completion_price_per_million_usd": 0.040,
+      "context_length": 131072
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "latency_samples": 6,
+      "median_latency_ms": 735,
+      "latency_range_ms": [668, 1143],
+      "tool_fidelity": { "passed": 3, "total": 3 },
+      "prompt_price_per_million_usd": 0.030,
+      "completion_price_per_million_usd": 0.130,
+      "context_length": 131072
+    }
+  ],
+  "recommended_model": "mistralai/mistral-nemo",
+  "recommendation_basis": "full tool fidelity first, then lowest median latency, then lowest completion price",
+  "alternative_model": "meta-llama/llama-3.1-8b-instruct",
+  "alternative_notes": "cheaper prompt price for history-heavy voice turns, lower worst-case latency, slightly higher median; openai/gpt-oss-20b is more capable but slower and pricier, and is a reasoning model (short-output probe consumed tokens on reasoning)",
+  "limits": [
+    "bounded provider probe, not a full conversation-level qualification",
+    "full T5.4 integration pending: pin voice.reasoning_model in Zati's governed profile through Settings on the installed Mac candidate, then select it in Talk to Zati (blocked on installation and owner Keychain approval)",
+    "full runtime qualification per docs/qualification.md is a separate pending gate",
+    "not a qualified daily-use release"
+  ]
+}
